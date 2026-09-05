@@ -1,0 +1,21 @@
+# Build artifacts
+.build/
+.build/**/*
+
+# Xcode
+.idea/
+*.xcuserdata
+xcuserdata/
+xcshareddata/
+DerivedData/
+*.mode1v3
+*.mode2v3
+*.pbxuser
+*.perspectivev3
+**/*.xcodeproj/**
+**/*.xcodeproj/xcshareddata/**
+**/*.xcodeproj/xcuserdata/**
+**/xcuserdata/**
+
+# OS
+.DS_Store
