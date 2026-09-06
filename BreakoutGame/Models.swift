@@ -128,23 +128,23 @@ struct Particle: Identifiable {
 }
 
 // MARK: - GameState
-class GameState: ObservableObject {
-    @Published var score: Int = 0
-    @Published var highScore: Int = 0
-    @Published var lives: Int = 3
-    @Published var level: Int = 0
-    @Published var balls: [Ball] = []
-    @Published var bricks: [Brick] = []
-    @Published var paddle: Paddle
-    @Published var powerUps: [PowerUp] = []
-    @Published var particles: [Particle] = []
-    @Published var activePowerUps: [PowerUpType: TimeInterval] = [:]
-    @Published var gamePhase: GamePhase = .menu
-    @Published var levelData: LevelDefinition = Level1
-    @Published var shakeAmount: Double = 0
-    @Published var comboCount: Int = 0
-    @Published var comboTimer: TimeInterval = 0
-    @Published var levelName: String = ""
+struct GameState {
+    var score: Int = 0
+    var highScore: Int = 0
+    var lives: Int = 3
+    var level: Int = 0
+    var balls: [Ball] = []
+    var bricks: [Brick] = []
+    var paddle: Paddle
+    var powerUps: [PowerUp] = []
+    var particles: [Particle] = []
+    var activePowerUps: [PowerUpType: TimeInterval] = [:]
+    var gamePhase: GamePhase = .menu
+    var levelData: LevelDefinition = Level1
+    var shakeAmount: Double = 0
+    var comboCount: Int = 0
+    var comboTimer: TimeInterval = 0
+    var levelName: String = ""
 
     init() {
         paddle = Paddle(
@@ -159,7 +159,7 @@ class GameState: ObservableObject {
         UserDefaults.standard.set(highScore, forKey: "breakout_high_score")
     }
 
-    func loadHighScore() {
+    mutating func loadHighScore() {
         highScore = UserDefaults.standard.integer(forKey: "breakout_high_score")
     }
 }
