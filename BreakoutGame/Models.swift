@@ -148,7 +148,7 @@ struct GameState {
 
     init() {
         paddle = Paddle(
-            position: Vec2(0, -260),
+            position: Vec2(0, 260),
             width: Level1.paddleWidth,
             height: 14
         )
@@ -197,7 +197,7 @@ let Level1 = LevelDefinition(
         [.hard,.hard,.hard,.hard,.hard,.hard,.hard,.hard,.hard,.hard],
         [.hard,.hard,.hard,.hard,.hard,.hard,.hard,.hard,.hard,.hard],
     ],
-    ballSpeed: 350, powerUpChance: 0.12, paddleWidth: 120
+    ballSpeed: 420, powerUpChance: 0.12, paddleWidth: 120
 )
 
 let Level2 = LevelDefinition(
@@ -211,7 +211,7 @@ let Level2 = LevelDefinition(
         [.hard,.hard,.normal,.normal,.hard,.hard,.normal,.normal,.hard,.hard],
         [.hard,.normal,.hard,.normal,.hard,.normal,.hard,.normal,.hard,.normal],
     ],
-    ballSpeed: 380, powerUpChance: 0.15, paddleWidth: 110
+    ballSpeed: 456, powerUpChance: 0.15, paddleWidth: 110
 )
 
 let Level3 = LevelDefinition(
@@ -225,7 +225,7 @@ let Level3 = LevelDefinition(
         [.hard,.normal,.normal,.indestructible,.normal,.normal,.indestructible,.normal,.normal,.hard],
         [.hard,.hard,.normal,.normal,.normal,.normal,.normal,.normal,.hard,.hard],
     ],
-    ballSpeed: 400, powerUpChance: 0.18, paddleWidth: 100
+    ballSpeed: 480, powerUpChance: 0.18, paddleWidth: 100
 )
 
 let Level4 = LevelDefinition(
@@ -241,7 +241,7 @@ let Level4 = LevelDefinition(
         [.normal,.normal,.normal,.hard,.hard,.hard,.hard,.normal,.normal,.normal],
         [.hard,.hard,.hard,.normal,.normal,.normal,.normal,.hard,.hard,.hard],
     ],
-    ballSpeed: 420, powerUpChance: 0.20, paddleWidth: 95
+    ballSpeed: 504, powerUpChance: 0.20, paddleWidth: 95
 )
 
 let Level5 = LevelDefinition(
@@ -256,7 +256,7 @@ let Level5 = LevelDefinition(
         [.normal,.hard,.indestructible,.normal,.normal,.normal,.normal,.indestructible,.hard,.normal],
         [.hard,.indestructible,.normal,.hard,.normal,.normal,.hard,.normal,.indestructible,.hard],
     ],
-    ballSpeed: 450, powerUpChance: 0.22, paddleWidth: 90
+    ballSpeed: 540, powerUpChance: 0.22, paddleWidth: 90
 )
 
 let AllLevels: [LevelDefinition] = [Level1, Level2, Level3, Level4, Level5]

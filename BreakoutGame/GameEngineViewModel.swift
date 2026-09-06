@@ -24,7 +24,7 @@ class GameEngineViewModel: ObservableObject {
         state.comboCount = 0
         state.comboTimer = 0
         state.paddle = Paddle(
-            position: Vec2(0, -260),
+            position: Vec2(0, 260),
             width: Level1.paddleWidth,
             height: 14
         )
@@ -47,7 +47,7 @@ class GameEngineViewModel: ObservableObject {
             for col in 0..<level.brickRows[row].count {
                 let type = level.brickRows[row][col]
                 let x = -totalWidth / 2.0 + Double(col) * (brickWidth + brickGap) + brickWidth / 2.0
-                let y = 220.0 - Double(row) * (brickHeight + brickGap) - brickHeight / 2.0
+                let y = -220.0 + Double(row) * (brickHeight + brickGap) + brickHeight / 2.0
                 bricks.append(Brick(
                     position: Vec2(x, y),
                     size: Vec2(brickWidth, brickHeight),
@@ -64,7 +64,7 @@ class GameEngineViewModel: ObservableObject {
         state.paddle.targetX = 0
         state.gamePhase = .ready
         state.balls = [Ball(
-            position: Vec2(0, -276),
+            position: Vec2(0, 247),
             velocity: .zero,
             radius: 6,
             trail: []
@@ -196,9 +196,9 @@ class GameEngineViewModel: ObservableObject {
                 state.balls[i] = ball
                 continue
             }
-            if ball.position.y < 300.0 - ball.radius {
-                ball.position.y = 300.0 - ball.radius
-                ball.velocity.y = -abs(ball.velocity.y)
+            if ball.position.y < -300.0 + ball.radius {
+                ball.position.y = -300.0 + ball.radius
+                ball.velocity.y = abs(ball.velocity.y)
             }
 
             // Paddle collision
@@ -273,7 +273,7 @@ class GameEngineViewModel: ObservableObject {
                         let type = types[Int.random(in: 0..<types.count)]
                         state.powerUps.append(PowerUp(
                             position: brick.position,
-                            velocity: Vec2(Double.random(in: -20...20), Double.random(in: -40...(-20))),
+                            velocity: Vec2(Double.random(in: -20...20), Double.random(in: 20...40)),
                             size: 18,
                             type: type
                         ))
@@ -356,7 +356,7 @@ class GameEngineViewModel: ObservableObject {
         for i in state.powerUps.indices {
             var pu = state.powerUps[i]
             pu.position += pu.velocity * dt
-            if pu.position.y < -300 { pu.active = false }
+            if pu.position.y > 300 { pu.active = false }
             state.powerUps[i] = pu
         }
         state.powerUps = state.powerUps.filter { $0.active }

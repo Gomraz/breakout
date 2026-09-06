@@ -18,26 +18,34 @@ struct GameCanvas: View {
                         .foregroundStyle(.secondary.opacity(0.5))
                 }
 
+            // The engine uses coordinates centered on a fixed 800 × 600 playfield.
+            // SwiftUI positions views from the canvas's top-left corner.
+            let centerX = engine.canvasSize.width / 2
+            let centerY = engine.canvasSize.height / 2
+
             // Bricks
             ForEach(engine.state.bricks) { brick in
                 if brick.alive {
                     brickView(brick: brick)
-                        .position(x: brick.position.x, y: brick.position.y)
                         .frame(width: brick.size.x, height: brick.size.y)
+                        .position(x: centerX + brick.position.x, y: centerY + brick.position.y)
                 }
             }
 
             // Paddle
             paddleView(paddle: engine.state.paddle)
-                .position(x: engine.state.paddle.position.x, y: engine.state.paddle.position.y)
                 .frame(width: engine.state.paddle.width, height: engine.state.paddle.height)
+                .position(
+                    x: centerX + engine.state.paddle.position.x,
+                    y: centerY + engine.state.paddle.position.y
+                )
 
             // Balls
             ForEach(engine.state.balls) { ball in
                 if ball.active {
                     ballView(ball: ball)
-                        .position(x: ball.position.x, y: ball.position.y)
                         .frame(width: ball.radius * 2, height: ball.radius * 2)
+                        .position(x: centerX + ball.position.x, y: centerY + ball.position.y)
                 }
             }
 
@@ -45,16 +53,16 @@ struct GameCanvas: View {
             ForEach(engine.state.powerUps) { pu in
                 if pu.active {
                     powerUpView(pu: pu)
-                        .position(x: pu.position.x, y: pu.position.y)
                         .frame(width: pu.size, height: pu.size)
+                        .position(x: centerX + pu.position.x, y: centerY + pu.position.y)
                 }
             }
 
             // Particles
             ForEach(engine.state.particles) { p in
                 particleView(particle: p)
-                    .position(x: p.position.x, y: p.position.y)
                     .frame(width: p.size * p.life, height: p.size * p.life)
+                    .position(x: centerX + p.position.x, y: centerY + p.position.y)
             }
 
             // "Press Space or Tap" hint during ready state
